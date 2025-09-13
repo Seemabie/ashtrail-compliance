@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashtrail Compliance | Practical Compliance for Growing Businesses</title>
+    <meta name="description" content="Ashtrail Compliance helps small and mid-sized teams meet SOC 2, HIPAA, and privacy requirements with clear policies, training, and audit support.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-teal: #4A7C88;
+            --dark-teal: #2C4F57;
+            --light-teal: #6FA3B1;
+            --accent-teal: #5C8F9D;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border-light: #E5E7EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-white);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--bg-white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--primary-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg);
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary-teal);
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(74, 124, 136, 0.05) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(74, 124, 136, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--primary-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary-teal);
+            color: white;
+            box-shadow: 0 4px 6px rgba(74, 124, 136, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(74, 124, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--light-teal));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--light-teal), var(--primary-teal));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Industries Section */
+        .industries {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+        }
+
+        .industries-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .industry-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .industry-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-white);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .industry-tab.active {
+            background: var(--primary-teal);
+            color: white;
+            border-color: var(--primary-teal);
+        }
+
+        .industry-tab:hover:not(.active) {
+            border-color: var(--primary-teal);
+            color: var(--primary-teal);
+        }
+
+        .industry-content {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .industry-panel {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .industry-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--bg-light);
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: scale(1.05);
+        }
+
+        .value-item h4 {
+            color: var(--primary-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--primary-teal) 100%);
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            color: var(--primary-teal);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--light-teal);
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-teal);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-tabs {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <svg class="checkmark" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <span>Ashtrail<br>Compliance</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ashtrail Compliance</h1>
+            <p>Practical compliance for growing businesses.</p>
+            <p>We help you meet regulations, reduce risk, and build trust with clear policies, right-sized controls, and audits that fit your operations.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get a Consultation</a>
+                <a href="#services" class="btn btn-secondary">Download Services Sheet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive compliance solutions tailored to your business needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">📋</div>
+                <h3>Compliance Strategy & Gap Assessment</h3>
+                <p>Readiness reviews against HIPAA, SOC 2, ISO 27001, PCI DSS, GLBA, and state privacy laws. Risk register and remediation roadmap with effort and timeline.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📄</div>
+                <h3>Policy & Program Development</h3>
+                <p>Complete policy suite and SOPs. Incident response, vendor risk, access control, and change management procedures. Record retention and data classification.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">✅</div>
+                <h3>Audit Readiness & Support</h3>
+                <p>Evidence collection and control testing. Auditor liaison and issue tracking. Annual program reviews.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🔐</div>
+                <h3>Privacy & Data Protection</h3>
+                <p>Data mapping and DPIAs. Privacy notices and consent flows. HIPAA compliance for covered entities and business associates.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🛡️</div>
+                <h3>Security Controls & Governance</h3>
+                <p>Administrative, physical, and technical controls. Vulnerability and patch management guidance. Secure development and third-party risk.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎓</div>
+                <h3>Training & Culture</h3>
+                <p>Role-based training for staff and leadership. Phishing awareness and tabletop exercises. New-hire onboarding modules.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="industries-container">
+            <div class="section-header">
+                <h2>Industries We Serve</h2>
+                <p>Specialized expertise across key sectors</p>
+            </div>
+            <div class="industry-tabs">
+                <button class="industry-tab active" onclick="showIndustry('healthcare')">Healthcare</button>
+                <button class="industry-tab" onclick="showIndustry('financial')">Financial Services</button>
+                <button class="industry-tab" onclick="showIndustry('technology')">Technology & SaaS</button>
+                <button class="industry-tab" onclick="showIndustry('retail')">Retail & eCommerce</button>
+            </div>
+            <div class="industry-content">
+                <div id="healthcare" class="industry-panel active">
+                    <h3>Healthcare</h3>
+                    <p>HIPAA programs, BAAs, access controls, and audit prep for clinics, labs, and health tech.</p>
+                    <p><strong>Case Study:</strong> Multi-site clinic standardized HIPAA program. We unified policies across locations, fixed access gaps, and ran drills. Result: faster audits and fewer incidents.</p>
+                </div>
+                <div id="financial" class="industry-panel">
+                    <h3>Financial Services</h3>
+                    <p>BSA/AML basics, KYC operations, GLBA safeguards, vendor oversight, and SOC 2 alignment.</p>
+                    <p><strong>Case Study:</strong> Payments company reduced chargeback risk. We improved documentation, tightened refund controls, and trained frontline staff. Chargebacks fell by 35% over two quarters.</p>
+                </div>
+                <div id="technology" class="industry-panel">
+                    <h3>Technology & SaaS</h3>
+                    <p>SOC 2 readiness, customer security questionnaires, secure SDLC, and cloud governance.</p>
+                    <p><strong>Case Study:</strong> HealthTech startup achieved SOC 2 Type 1 in 90 days. We mapped controls, built policies, trained staff, and packaged evidence. The audit passed with no major findings and reduced security questionnaire time by 60%.</p>
+                </div>
+                <div id="retail" class="industry-panel">
+                    <h3>Retail & eCommerce</h3>
+                    <p>PCI DSS scoping, inventory and refund controls, data minimization, and staff training.</p>
+                    <p>We help retail businesses protect customer payment data and meet PCI compliance requirements while maintaining operational efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2>Who We Are</h2>
+            <p>Ashtrail Compliance is an independent compliance advisory based in New York. We partner with small and mid-sized organizations that need to meet strict requirements without slowing down their work.</p>
+        </div>
+        
+        <h3 style="text-align: center; margin: 2rem 0 1rem;">Our Mission</h3>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">Keep compliance simple, honest, and effective so teams can focus on serving customers.</p>
+        
+        <h3 style="text-align: center; margin-bottom: 2rem;">Our Values</h3>
+        <div class="values-grid">
+            <div class="value-item">
+                <h4>Clarity</h4>
+                <p>Plain language. Actionable steps.</p>
+            </div>
+            <div class="value-item">
+                <h4>Integrity</h4>
+                <p>Do the right thing even when no one is watching.</p>
+            </div>
+            <div class="value-item">
+                <h4>Accountability</h4>
+                <p>Measure results and own outcomes.</p>
+            </div>
+            <div class="value-item">
+                <h4>Respect</h4>
+                <p>Work with people, not against them.</p>
+            </div>
+        </div>
+
+        <h3 style="text-align: center; margin: 3rem 0 2rem;">Our Approach</h3>
+        <div style="max-width: 700px; margin: 0 auto;">
+            <p><strong>1. Listen.</strong> Understand your business model, data flows, and risk points.</p>
+            <p><strong>2. Assess.</strong> Identify gaps against the standards you must meet.</p>
+            <p><strong>3. Plan.</strong> Prioritize fixes with clear owners and dates.</p>
+            <p><strong>4. Implement.</strong> Draft policies, train staff, and stand up controls.</p>
+            <p><strong>5. Validate.</strong> Test, monitor, and prepare evidence for auditors and regulators.</p>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="services">
+        <div class="section-header">
+            <h2>Resources</h2>
+            <p>Helpful guides and frequently asked questions</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>📚 Guides</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;">• HIPAA Essentials for Small Practices</li>
+                    <li style="margin-bottom: 0.5rem;">• SOC 2 Readiness Checklist</li>
+                    <li>• Vendor Risk Due Diligence Template</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>❓ FAQs</h3>
+                <p><strong>Do we need SOC 2 or HIPAA?</strong><br>
+                It depends on your customers, data, and contracts. We help you pick the right standard and avoid over-engineering.</p>
+                <p><strong>How long does compliance take?</strong><br>
+                Simple programs can be set up in weeks. Audit readiness can take 60 to 120 days based on scope and team size.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>Ready to simplify compliance?</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Contact us for a free 20-minute consultation.</p>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="checkbox" id="consent" name="consent" required style="width: auto;">
+                    <label for="consent" style="margin: 0;">I agree to be contacted about compliance services</label>
+                </div>
+                <button type="submit" class="form-submit">Request a Consultation</button>
+            </form>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p>📍 Queens, New York</p>
+                <p>📧 info@ashtrailcompliance.com</p>
+                <p>🕒 Monday to Friday, 9:00 AM to 6:00 PM ET</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#industries">Industries</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">HIPAA Guide</a>
+                <a href="#">SOC 2 Checklist</a>
+                <a href="#">Privacy Resources</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Accessibility</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="mailto:info@ashtrailcompliance.com">Email Us</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Ashtrail Compliance. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            }
+        }
+
+        // Industry tabs
+        function showIndustry(industry) {
+            const tabs = document.querySelectorAll('.industry-tab');
+            const panels = document.querySelectorAll('.industry-panel');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(industry).classList.add('active');
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your interest! We will contact you within 24 hours to schedule your consultation.');
+            event.target.reset();
+        }
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    const navLinks = document.querySelector('.nav-links');
+                    if (window.innerWidth <= 768 && navLinks.style.display === 'flex') {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
